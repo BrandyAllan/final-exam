@@ -1,0 +1,17 @@
+✔ Créer base de donnée @done (14/07/2025 09:43:08)
+    ✔ membre @done (14/07/2025 09:43:09)
+    ✔ categorie_objet @done (14/07/2025 09:43:10)
+    ✔ objet @done (14/07/2025 09:43:11)
+    ✔ images_objet @done (14/07/2025 09:43:12)
+    ✔ emprunt @done (14/07/2025 09:43:12)
+
+✔ Insérer données @done (14/07/2025 09:52:10)
+    ✔ 4 membres @done (14/07/2025 09:52:11)
+    ✔ 4 categorie @done (14/07/2025 09:52:12)
+    ✔ 10 objets par membre à repartir @done (14/07/2025 09:52:14)
+    ✔ 10 emprunts @done (14/07/2025 09:52:13)
+
+☐ Pages
+    ☐ login et inscription
+    ☐ liste des objets (avec date de retour si emprunt en cours)
+    ☐ filtre par catego
