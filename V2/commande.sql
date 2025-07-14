@@ -42,6 +42,10 @@ CREATE TABLE s2_emprunt (
     FOREIGN KEY (id_objet) REFERENCES s2_objet(id_objet),
     FOREIGN KEY (id_membre) REFERENCES s2_membre(id_membre)
 );
+CREATE TABLE s2_return (
+    id_emprunt INT,
+    etat INT
+);
 
 
 CREATE OR REPLACE VIEW v_s2_objet AS
@@ -133,5 +137,5 @@ INSERT INTO s2_emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_reto
 INSERT INTO s2_emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_retour) VALUES
 (1, 1, 2, '2025-07-01', '2025-07-20');
 UPDATE s2_emprunt
-SET date_retour = now()
-WHERE date_retour IS NULL;
+SET date_retour = '2025-09-12'
+WHERE date_retour = '2025-07-014';

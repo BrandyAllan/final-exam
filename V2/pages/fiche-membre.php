@@ -1,7 +1,7 @@
 <?php
 $id = $_GET['id_membre'];
 $liste_objet = get_objet_proprietaire($id);
-
+$emprunt;
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +24,7 @@ $liste_objet = get_objet_proprietaire($id);
                             <th scope="col">Catégorie</th>
                             <th scope="col">Propriétaire</th>
                             <th scope="col">Disponibilité</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,13 @@ $liste_objet = get_objet_proprietaire($id);
                                 <td><?= $liste_objet[$i]['nom_categorie']; ?></td>
                                 <td><?= get_nom_proprietaire_objet($liste_objet[$i]['id_membre']); ?></td>
                                 <td><?= verifier_emprunt($liste_objet[$i]['id_objet']); ?></td>
+                                <?php if (verifier_emprunt($liste_objet[$i]['id_objet']) != "DISPONIBLE") { ?>
+                                    <?php $emprunt = get_objet_emprunt_history($liste_objet[$i]['id_objet']); ?>
+                                    <td><a href="../modele/modele1.php?page=return_emprunt&id_emprunt=<?= $emprunt[0]['id_emprunt'] ?>" class="btn btn-outline-success btn-sm">
+                                        retourner
+                                    </a></td>
+                                <?php } ?>
+                                <td></td>
                             </tr>
                         <?php } ?>
                     </tbody>
