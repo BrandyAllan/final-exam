@@ -138,9 +138,7 @@
         } else {
             $data = mysqli_fetch_assoc($result);
             $now = new DateTime();
-            $now = $now->format('Y-m-d');
             $date = new DateTime($data['date_retour']);
-            $date = $date->format('Y-m-d');
             if ($date <= $now) {
                 return "DISPONIBLE";
             }
