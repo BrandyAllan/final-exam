@@ -3,11 +3,11 @@
 
     function get_all_member($email){
         $donnee = get_loged_membre($email);
-        $idMembre = $donnee['IdMembre'];
+        $idMembre = $donnee['id_membre'];
 
         $sql = "SELECT * 
-        FROM Membres 
-        WHERE IdMembre != %s AND IdMembre NOT IN 
+        FROM s2_membre 
+        WHERE id_membre != %s AND id_membre NOT IN 
         (SELECT * FROM v_amis_bloque)";
         $sql = sprintf($sql, $idMembre, $idMembre, $idMembre, $idMembre, $idMembre);
         $result = mysqli_query(dbconnect(), $sql);
