@@ -1,7 +1,7 @@
 <?php
 $info_objet = get_object_per_id($_GET['id_objet']);
 $history_emprunt = get_objet_emprunt_history($_GET['id_objet']);
-
+$images;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +14,16 @@ $history_emprunt = get_objet_emprunt_history($_GET['id_objet']);
         <div id="mainCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
             <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../assets/images/<?= $donnee['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 1">
+                <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 1">
+            </div>
+            <?php for ($i=0; $i < count; $i++) { ?>
+                
+            <?php } ?>
+            <div class="carousel-item">
+                <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 2">
             </div>
             <div class="carousel-item">
-                <img src="../assets/images/cuisine<?= $donnee['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 2">
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/images/chambre<?= $donnee['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 3">
+                <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 3">
             </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
@@ -32,9 +35,9 @@ $history_emprunt = get_objet_emprunt_history($_GET['id_objet']);
         </div>
 
         <div class="d-flex gallery-thumbs">
-            <img src="../assets/images/<?= $donnee['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="me-2">
-            <img src="../assets/images/cuisine<?= $donnee['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="1">
-            <img src="../assets/images/chambre<?= $donnee['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="2">
+            <img src="../assets/image/<?= $images['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="me-2">
+            <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="1">
+            <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="2">
         </div>
         <article>
             <h3>Histprique d'emprunt</h3>
