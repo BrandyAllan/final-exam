@@ -74,36 +74,9 @@
         <section class="container mt-5">
             <h4 class="mb-3">📦 Liste</h4>
             <div class="table-responsive">
-                <?php if(!isset($_POST['disponible']) && (isset($_POST['categorie']) || isset($_POST['nom_objet']))) { ?>
-                <table class="table table-bordered table-hover align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">Voir</th>
-                            <th scope="col">Nom objet</th>
-                            <th scope="col">Catégorie</th>
-                            <th scope="col">Propriétaire</th>
-                            <th scope="col">Disponibilité</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php for($i = 0; $i < count($recherche); $i++) { ?>
-                            <tr>
-                                <td class="text-center">
-                                    <a href="../modele/modele1.php?page=fiche-objet&id_objet=<?= $recherche[$i]['id_objet'] ?>" class="btn btn-outline-primary btn-sm">
-                                        <i class="bi bi-box-seam"></i>
-                                    </a>
-                                </td>
-                                <td><?= $recherche[$i]['nom_objet']; ?></td>
-                                <td><?= $recherche[$i]['nom_categorie']; ?></td>
-                                <td><?= get_nom_proprietaire_objet($recherche[$i]['id_membre']); ?></td>
-                                <td><?= verifier_emprunt($recherche[$i]['id_objet']); ?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                <?php } ?>
-
-                <?php if(!isset($_POST['disponible']) && !isset($_POST['categorie']) && !isset($_POST['nom_objet'])) { ?>
+                <?php if(isset($_POST['disponible']) || isset($_POST['categorie']) || isset($_POST['nom_objet'])) {
+                    $liste_objet = $recherche;
+                 } ?>
 
                 <table class="table table-bordered table-hover align-middle">
                     <thead class="table-dark">
@@ -113,6 +86,7 @@
                             <th scope="col">Catégorie</th>
                             <th scope="col">Propriétaire</th>
                             <th scope="col">Disponibilité</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -126,12 +100,15 @@
                                 <td><?= $liste_objet[$i]['nom_objet']; ?></td>
                                 <td><?= $liste_objet[$i]['nom_categorie']; ?></td>
                                 <td><?= get_nom_proprietaire_objet($liste_objet[$i]['id_membre']); ?></td>
-                                <td><?= verifier_emprunt($liste_objet[$i]['id_objet']); ?></td>
+                                <?php $emprunt = verifier_emprunt($liste_objet[$i]['id_objet']); ?>
+                                <td><?= $emprunt ?></td>
+                                <?php if($emprunt == "DISPONIBLE") { ?>
+                                    <td><a href="../modele/modele1.php?page=emprunt&id_objet=<?= $liste_objet[$i]['id_objet'] ?>"><i class="bi-download"></i></a></td>
+                                <?php } ?>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
-                <?php } ?>
 
             </div>
         </section>

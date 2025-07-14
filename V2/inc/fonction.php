@@ -106,6 +106,15 @@
         return $ret;
     }
 
+    function get_object_pour_emprunt($id){
+        $sql = "SELECT * FROM v_s2_objet 
+                WHERE id_objet = $id";
+        $result = mysqli_query(dbconnect(), $sql);
+        $ret = $data = mysqli_fetch_assoc($result);
+
+        return $ret;
+    }
+
     function get_image_objet($id){
         $sql = "SELECT * FROM s2_image_objet
                 WHERE id_objet = $id";
@@ -129,8 +138,10 @@
         } else {
             $data = mysqli_fetch_assoc($result);
             $now = new DateTime();
+            $now = $now->format('Y-m-d');
             $date = new DateTime($data['date_retour']);
-            if ($date < $now) {
+            $date = $date->format('Y-m-d');
+            if ($date <= $now) {
                 return "DISPONIBLE";
             }
             $ret = "A partir de %s";
