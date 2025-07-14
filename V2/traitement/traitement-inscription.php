@@ -12,13 +12,14 @@ ini_set('display_errors', 1);
     $genre = $_POST['sexe'];
     $ville = $_POST['ville'];
 
-    $uploadDir = __DIR__ . '/../assets/image/profil/';
-    $maxSize = 2 * 1024 * 1024; // 2 Mo
-    $allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
     $newName = "default.jpg";
-
+    $verify = false;
+    
     // Vérifie si un fichier est soumis
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profil'])) {
+        $uploadDir = __DIR__ . '/../assets/image/profil/';
+        $maxSize = 2 * 1024 * 1024; // 2 Mo
+        $allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
         $file = $_FILES['profil'];
     
         if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -48,6 +49,8 @@ ini_set('display_errors', 1);
         } else {
             echo "Échec du déplacement du fichier.";
         }
+    } else {
+        echo "tsy mety";
     }
     
     if(verify_inscription($email) > 0){
@@ -63,6 +66,9 @@ ini_set('display_errors', 1);
     }
     $_SESSION['email'] = $email;
     $_SESSION['mdp'] = $mdp;
-    add_new_member($nom, $ddns, $genre, $email, $ville, $mdp, $newName);
+
+    if($verify == true) {
+        add_new_member($nom, $ddns, $genre, $email, $ville, $mdp, $newName);
+    }
     header('Location: ../modele/modele1.php?page=home');
 ?>

@@ -18,8 +18,8 @@
         </header>
         <main>
             <div class="inscription">
-                <form action="../traitement/traitement-inscription.php" method="post">
-                    <p>Photo de profil : <input type="file" name = "profil"></p>
+                <form action="../traitement/traitement-inscription.php" method="post" enctype="multipart/form-data">
+                    <p>Photo de profil : <input type="file" name="profil"></p>
                     <p>Nom : <input type="text" name="nom"></p>
                     <p>Date de naissance : <input type="date" name="ddns"></p>
                     <?php if(isset($_GET['error'])) { ?>
@@ -41,7 +41,7 @@
                     <p>Confirmer mot de passe : <input type="password" name="mdpbis"></p>
                     <p><input type="submit" value="S'inscrire"></p>
                 </form>
-                <p>Vous avez déjà un compte ? <a href="../modele/modele1.php?page=index" class="inscri">Se connecter</a></p>
+                <p>Vous avez déjà un compte ? <a href="index.php" class="inscri">Se connecter</a></p>
             </div>
         </main>
     </body>
