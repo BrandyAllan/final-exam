@@ -80,6 +80,19 @@
         return $ret;
     }
 
+    function get_object_per_id($id){
+        $sql = "SELECT * FROM v_s2_objet
+                WHERE id_objet = $id";
+        $result = mysqli_query(dbconnect(), $sql);
+        $ret = array();
+
+        while($data = mysqli_fetch_assoc($result)) { 
+            $ret[] = $data;
+        }
+
+        return $ret;
+    }
+
     function get_all_object_per_categorie($id){
         $sql = "SELECT * FROM v_s2_objet 
                 WHERE id_categorie = $id";
@@ -90,6 +103,18 @@
             $ret[] = $data;
         }
 
+        return $ret;
+    }
+
+    function get_image_objet($id){
+        $sql = "SELECT * FROM s2_image_objet
+                WHERE id_objet = $id";
+        $result = mysqli_query(dbconnect(), $sql);
+        $ret = array();
+
+        while($data = mysqli_fetch_assoc($result)) { 
+            $ret[] = $data;
+        }
         return $ret;
     }
 
@@ -141,6 +166,18 @@
         $ret = array();
 
         while($data = mysqli_fetch_assoc($result)) { 
+            $ret[] = $data;
+        }
+
+        return $ret;
+    }
+
+    function get_objet_emprunt_history($id){
+        $sql = "SELECT * FROM s2_emprunt 
+                WHERE id_objet = $id";
+        $result = mysqli_query(dbconnect(), $sql);
+        $ret = array();
+        while ($data = mysqli_fetch_assoc($result)) {
             $ret[] = $data;
         }
 

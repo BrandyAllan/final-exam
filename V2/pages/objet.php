@@ -13,6 +13,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th scope="col">Nom objet</th>
                     <th scope="col">Catégorie</th>
                     <th scope="col">Propriétaire</th>
@@ -22,6 +23,7 @@
             <tbody>
                 <?php for($i = 0; $i < count($liste_objet); $i++) { ?>
                     <tr>
+                        <td><a href="../modele/modele1.php?page=fiche-objet&id_objet=<?= $liste_objet[$i]['id_objet'] ?>"><i class="bi bi-box-seam"></i></a></td>
                         <td><?= $liste_objet[$i]['nom_objet']; ?></td>
                         <td><?= $liste_objet[$i]['nom_categorie']; ?></td>
                         <td><?= get_nom_proprietaire_objet($liste_objet[$i]['id_membre']); ?></td>
