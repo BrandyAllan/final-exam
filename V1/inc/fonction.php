@@ -69,6 +69,50 @@
     }
 
     function get_all_object(){
+        $sql = "SELECT * FROM v_s2_objet";
+        $result = mysqli_query(dbconnect(), $sql);
+        $ret = array();
 
+        while($data = mysqli_fetch_assoc($result)) { 
+            $ret[] = $data;
+        }
+
+        return $ret;
+    }
+
+    function verifier_emprunt($id_objet) {
+        $sql = "SELECT *
+        FROM s2_emprunt
+        WHERE id_objet = $id_objet";
+        $result = mysqli_query(dbconnect(), $sql);
+
+        if(mysqli_num_rows($result) < 1) {
+            return "DISPONIBLE";
+        } else {
+            $data = mysqli_fetch_assoc($result);
+            $ret = "A partir de %s";
+            $date = date("d M Y", strtotime($data['date_retour']));
+            $ret = sprintf($ret, $date);
+            return $ret;
+        }
+    }
+
+    function get_nom_proprietaire_objet($id_membre) {
+        $sql = "SELECT * FROM s2_membre WHERE id_membre = $id_membre";
+        $result = mysqli_query(dbconnect(), $sql);
+        $data = mysqli_fetch_assoc($result);
+
+        return $data['nom'];
+    }
+
+    function get_liste_categorie() {
+        $sql = "SELECT * FROM s2_categorie_objet";
+        $result = mysqli_query(dbconnect(), $sql);
+        $ret = array();
+        while ($data = mysqli_fetch_assoc($result)) {
+            $ret = $data;
+        }
+
+        return $ret;
     }
 ?>

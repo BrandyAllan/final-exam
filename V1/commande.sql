@@ -43,9 +43,15 @@ CREATE TABLE s2_emprunt (
     FOREIGN KEY (id_membre) REFERENCES s2_membre(id_membre)
 );
 
-SELECT o.id_objet, o.nom_objet
-FROM s2_objet o 
-JOIN s2_emprunt e ON e.id_objet = o.id_objet 
+CREATE OR REPLACE VIEW v_s2_objet AS
+SELECT co.id_categorie, co.nom_categorie, o.id_objet, o.nom_objet, o.id_membre
+FROM s2_categorie_objet co
+JOIN s2_objet o ON co.id_categorie = o.id_categorie
+ORDER BY o.id_objet;
+
+SELECT *
+FROM s2_emprunt
+WHERE id_objet = 1;
 
 INSERT INTO s2_membre (id_membre, nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
 (1, 'Alice', '1990-05-10', 'F', 'alice@example.com', 'Antananarivo', 'pass1', 'alice.jpg'),
@@ -65,7 +71,6 @@ INSERT INTO s2_objet (id_objet, nom_objet, id_categorie, id_membre) VALUES
 (2, 'Mascara', 1, 1),
 (3, 'Tournevis', 2, 1),
 (4, 'Marteau', 2, 1),
-    function get_
 (5, 'Clé à molette', 3, 1),
 (6, 'Pompe à vélo', 3, 1),
 (7, 'Mixeur', 4, 1),
@@ -120,10 +125,14 @@ INSERT INTO s2_emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_reto
 (1, 1, 2, '2025-07-01', '2025-07-07'),
 (2, 11, 1, '2025-07-03', '2025-07-10'),
 (3, 25, 2, '2025-07-05', '2025-07-12'),
-(4, 33, 3, '2025-07-06', NULL),
+(4, 33, 3, '2025-07-06', now()),
 (5, 5, 4, '2025-07-01', '2025-07-04'),
-(6, 6, 2, '2025-07-02', NULL),
-(7, 15, 1, '2025-07-04', NULL),
+(6, 6, 2, '2025-07-02', now()),
+(7, 15, 1, '2025-07-04', now()),
 (8, 20, 3, '2025-07-08', '2025-07-11'),
-(9, 38, 1, '2025-07-09', NULL),
-(10, 3, 4, '2025-07-10', NULL);
+(9, 38, 1, '2025-07-09', now()),
+(10, 3, 4, '2025-07-10', now());
+
+UPDATE s2_emprunt
+SET date_retour = now()
+WHERE date_retour IS NULL;
