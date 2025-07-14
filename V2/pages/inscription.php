@@ -14,7 +14,7 @@
     </head>
     <body class="bg-light">
 
-        <header class="bg-success text-white text-center py-4">
+        <header class="bg-secondary text-white text-center py-4">
             <h1>Inscription</h1>
         </header>
 

@@ -37,7 +37,7 @@ $images = get_all_image_object($_GET['id_objet']);
         </div>
         <p><?= $info_objet[0]['nom_objet'] ?> de <?= $info_objet[0]['nom'] ?></p>
         <article>
-            <h3>Histprique d'emprunt</h3>
+            <h3>Historique d'emprunt</h3>
             <table class="table">
                     <thead>
                         <tr>
@@ -56,5 +56,6 @@ $images = get_all_image_object($_GET['id_objet']);
                 </table>
         </article>
     </section>
+
 </body>
 </html>

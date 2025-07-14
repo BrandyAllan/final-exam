@@ -46,6 +46,9 @@ ini_set('display_errors', 1);
                                 <a class="nav-link" href="?page=objet">Liste objets</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="?page=liste-membre">Liste membres</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="../inc/logout.php">Déconnexion</a>
                             </li>
                         </ul>

@@ -13,7 +13,7 @@
     </head>
     <body class="bg-light">
 
-        <header class="text-center py-4 bg-primary text-white">
+        <header class="text-center py-4 bg-secondary text-white">
             <h1>Se connecter</h1>
         </header>
 
@@ -39,7 +39,7 @@
                                         <input type="password" class="form-control" name="mdp" id="mdp" required>
                                     </div>
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                                        <button type="submit" class="btn btn-secondary">Se connecter</button>
                                     </div>
                                 </form>
 

@@ -161,7 +161,8 @@
 
     function get_objet_proprietaire($id_membre) {
         $sql = "SELECT * FROM v_s2_objet 
-                WHERE id_membre = $id_membre";
+                WHERE id_membre = $id_membre
+                ORDER BY nom_categorie";
         $result = mysqli_query(dbconnect(), $sql);
         $ret = array();
 
@@ -223,5 +224,43 @@
         }
         $nom_image = explode(";", $data['nom_image']);
         return $nom_image;
+    }
+
+    function search_without_disponible($id_categorie, $nom_objet) {
+        $sql = "SELECT * FROM v_s2_objet 
+        WHERE 1 = 1";
+        if($id_categorie != 0) {
+            $sql = $sql . " AND id_categorie = $id_categorie";
+        }
+        if($nom_objet != "") {
+            $sql = $sql . " AND nom_objet LIKE '%$nom_objet%'";
+        }
+        $result = mysqli_query(dbconnect(), $sql);
+        $recherche = array();
+        while ($data = mysqli_fetch_assoc($result)) {
+            $recherche[] = $data;
+        }
+        return $recherche;
+    }
+
+    function search_disponible($id_categorie, $nom_objet) {
+        $sql = "SELECT * FROM v_s2_objet 
+        WHERE 1 = 1";
+        if($id_categorie != 0) {
+            $sql = $sql . " AND id_categorie = $id_categorie";
+        }
+        if($nom_objet != "") {
+            $sql = $sql . " AND nom_objet LIKE '%$nom_objet%'";
+        }
+        $result = mysqli_query(dbconnect(), $sql);
+        $recherche = array();
+        while ($data = mysqli_fetch_assoc($result)) {
+            $verify = verifier_emprunt($data['id_objet']);
+            if($verify == "DISPONIBLE"){
+
+                $recherche[] = $data;
+            } 
+        }
+        return $recherche;
     }
 ?>

@@ -1,7 +1,29 @@
 <?php
     $liste_objet = get_all_object();
     $liste_categorie = get_liste_categorie();
-
+    $id_categorie = 0;
+    $nom_objet = "";
+    
+    if(!isset($_POST['disponible']) && (isset($_POST['categorie']) || isset($_POST['nom_objet']))) {
+        if(isset($_POST['categorie'])) {
+            $id_categorie = $_POST['categorie'];
+        }
+        if(isset($_POST['nom_objet'])) {
+            $nom_objet = $_POST['nom_objet'];
+        }
+        $recherche = search_without_disponible($id_categorie, $nom_objet);
+    }
+    if(isset($_POST['disponible'])) {
+        echo $_POST['disponible'];
+        if(isset($_POST['categorie'])) {
+            $id_categorie = $_POST['categorie'];
+        }
+        if(isset($_POST['nom_objet'])) {
+            $nom_objet = $_POST['nom_objet'];
+        }
+        $recherche = search_disponible($id_categorie, $nom_objet);
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +37,7 @@
 
         <section class="container py-4">
             <h3 class="mb-4">🔍 Rechercher un objet</h3>
-            <form action="../traitement/traitement-recherche.php" method="post" class="bg-white p-4 rounded shadow-sm">
+            <form action="../modele/modele1.php?page=objet" method="post" class="bg-white p-4 rounded shadow-sm">
                 <div class="mb-3">
                     <label for="categorie" class="form-label">Choisissez une catégorie</label>
 
@@ -52,6 +74,37 @@
         <section class="container mt-5">
             <h4 class="mb-3">📦 Liste</h4>
             <div class="table-responsive">
+                <?php if(!isset($_POST['disponible']) && (isset($_POST['categorie']) || isset($_POST['nom_objet']))) { ?>
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Voir</th>
+                            <th scope="col">Nom objet</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col">Propriétaire</th>
+                            <th scope="col">Disponibilité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php for($i = 0; $i < count($recherche); $i++) { ?>
+                            <tr>
+                                <td class="text-center">
+                                    <a href="../modele/modele1.php?page=fiche-objet&id_objet=<?= $recherche[$i]['id_objet'] ?>" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-box-seam"></i>
+                                    </a>
+                                </td>
+                                <td><?= $recherche[$i]['nom_objet']; ?></td>
+                                <td><?= $recherche[$i]['nom_categorie']; ?></td>
+                                <td><?= get_nom_proprietaire_objet($recherche[$i]['id_membre']); ?></td>
+                                <td><?= verifier_emprunt($recherche[$i]['id_objet']); ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <?php } ?>
+
+                <?php if(!isset($_POST['disponible']) && !isset($_POST['categorie']) && !isset($_POST['nom_objet'])) { ?>
+
                 <table class="table table-bordered table-hover align-middle">
                     <thead class="table-dark">
                         <tr>
@@ -78,6 +131,8 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
+
             </div>
         </section>
 
