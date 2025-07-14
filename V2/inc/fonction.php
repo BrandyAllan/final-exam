@@ -215,11 +215,13 @@
         $result = mysqli_query(dbconnect(), $sql);
         $data = mysqli_fetch_assoc($result);
         if(mysqli_num_rows($result) < 1) {
-            return "default.jpg";
+            $nom_image[] = "default.jpg";
+            return $nom_image;
         }
         $data = mysqli_fetch_assoc($result);
         if($data['nom_image'] == NULL) {
-            return "default.jpg";
+            $nom_image[] = "default.jpg";
+            return $nom_image;
         }
         $nom_image = explode(";", $data['nom_image']);
         return $nom_image;

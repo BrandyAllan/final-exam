@@ -11,22 +11,48 @@
         <link rel="stylesheet" href="../assets/bootstrap-icons/font/bootstrap-icons.css">
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     </head>
-    <body>
-        <header>
+    <body class="bg-light">
+
+        <header class="text-center py-4 bg-primary text-white">
             <h1>Se connecter</h1>
         </header>
+
         <main>
-            <div class="log">
-                <form action="../traitement/traitement-login.php" method="post">
-                    <?php if(isset($_GET['error'])) { ?>
-                        <p class="error">Email ou mot de passe incorect</p>
-                    <?php } ?>
-                    <p>Email : <input type="text" name="email"></p>
-                    <p>Mot de passe : <input type="password" name="mdp"></p>
-                    <p><input type="submit" value="Se connecter"></p>
-                </form>
-                <p>Vous n'avez pas de compte ? <a href="inscription.php" class="inscri">S'inscrire</a></p>
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <?php if(isset($_GET['error'])) { ?>
+                                    <div class="alert alert-danger text-center">
+                                        Email ou mot de passe incorrect
+                                    </div>
+                                <?php } ?>
+
+                                <form action="../traitement/traitement-login.php" method="post">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email :</label>
+                                        <input type="text" class="form-control" name="email" id="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="mdp" class="form-label">Mot de passe :</label>
+                                        <input type="password" class="form-control" name="mdp" id="mdp" required>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                                    </div>
+                                </form>
+
+                                <p class="mt-3 text-center">
+                                    Vous n'avez pas de compte ?
+                                    <a href="inscription.php" class="text-decoration-none">S'inscrire</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
+
     </body>
 </html>
