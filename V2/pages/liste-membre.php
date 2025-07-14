@@ -1,11 +1,9 @@
 <?php
 $all_membre = get_all_member($_SESSION['email']);
 ?>
-<table class="table">
+        <table class="table">
             <thead>
                 <tr>
-                    <th></th>
-
                     <th scope="col"></th>
                     <th scope="col">Nom</th>
                 </tr>

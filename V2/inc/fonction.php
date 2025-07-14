@@ -1,18 +1,17 @@
 <?php
     require("connexion.php");
 
-    function get_all_member($email){
-        $donnee = get_loged_membre($email);
-        $idMembre = $donnee['id_membre'];
-
+    function get_all_member(){
         $sql = "SELECT * 
-        FROM s2_membre 
-        WHERE id_membre != %s AND id_membre NOT IN 
-        (SELECT * FROM v_amis_bloque)";
-        $sql = sprintf($sql, $idMembre, $idMembre, $idMembre, $idMembre, $idMembre);
+        FROM s2_membre";
         $result = mysqli_query(dbconnect(), $sql);
+        $ret = array();
 
-        return $result;
+        while($data = mysqli_fetch_assoc($result)) { 
+            $ret[] = $data;
+        }
+
+        return $ret;
     }
 
     function to_log($email, $mdp){
