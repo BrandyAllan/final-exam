@@ -183,4 +183,33 @@
 
         return $ret;
     }
+
+    function add_new_object($nom_objet, $id_categorie, $id_membre, $filenames) {
+        $sql = "INSERT INTO s2_objet(nom_objet, id_categorie, id_membre) VALUES('%s', %s, %s)";
+        $sql = sprintf($sql, $nom_objet, $id_categorie, $id_membre);
+        mysqli_query(dbconnect(), $sql);
+
+        $id_objet = mysqli_insert_id(dbconnect());
+        $sql = "INSERT INTO s2_image_objet(id_objet, nom_image) VALUES(%s, '%s')";
+        $sql = sprintf($sql, $id_objet, $filenames);
+        mysqli_query(dbconnect(), $sql);
+    }
+
+    function get_principal_image_object($id_objet) {
+        $sql = "SELECT * FROM s2_image_objet WHERE id_objet = $id_objet";
+        $result = mysqli_query(dbconnect(), $sql);
+        $data = mysqli_fetch_assoc($result);
+        $nom_image[] = explode(";", $data['nom_image']);
+
+        return $nom_image[0];
+    }
+
+    function get_all_image_object($id_objet) {
+        $sql = "SELECT * FROM s2_image_objet WHERE id_objet = $id_objet";
+        $result = mysqli_query(dbconnect(), $sql);
+        $data = mysqli_fetch_assoc($result);
+        $nom_image[] = explode(";", $data['nom_image']);
+
+        return $nom_image;
+    }
 ?>

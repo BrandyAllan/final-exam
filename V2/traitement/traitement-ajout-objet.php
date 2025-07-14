@@ -53,14 +53,7 @@ ini_set('display_errors', 1);
         }
     }
 
-    $sql = "INSERT INTO s2_objet(nom_objet, id_categorie, id_membre) VALUES('%s', %s, %s)";
-    $sql = sprintf($sql, $nom_objet, $id_categorie, $id_membre);
-    mysqli_query(dbconnect(), $sql);
-
-    $id_objet = mysqli_insert_id(dbconnect());
-    $sql = "INSERT INTO s2_image_objet(id_objet, nom_image) VALUES(%s, '%s')";
-    $sql = sprintf($sql, $id_objet, $filenames);
-    mysqli_query(dbconnect(), $sql);
+    add_new_object($nom_objet, $id_categorie, $id_membre, $filenames);
     
     header('Location: ../modele/modele1.php?page=ajout-objet&success=0');
 ?>
