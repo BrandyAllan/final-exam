@@ -198,9 +198,14 @@
     function get_principal_image_object($id_objet) {
         $sql = "SELECT * FROM s2_image_objet WHERE id_objet = $id_objet";
         $result = mysqli_query(dbconnect(), $sql);
+        if(mysqli_num_rows($result) < 1) {
+            return "default.jpg";
+        }
         $data = mysqli_fetch_assoc($result);
-        $nom_image[] = explode(";", $data['nom_image']);
-
+        if($data['nom_image'] == NULL) {
+            return "default.jpg";
+        }
+        $nom_image = explode(";", $data['nom_image']);
         return $nom_image[0];
     }
 
@@ -208,8 +213,14 @@
         $sql = "SELECT * FROM s2_image_objet WHERE id_objet = $id_objet";
         $result = mysqli_query(dbconnect(), $sql);
         $data = mysqli_fetch_assoc($result);
-        $nom_image[] = explode(";", $data['nom_image']);
-
+        if(mysqli_num_rows($result) < 1) {
+            return "default.jpg";
+        }
+        $data = mysqli_fetch_assoc($result);
+        if($data['nom_image'] == NULL) {
+            return "default.jpg";
+        }
+        $nom_image = explode(";", $data['nom_image']);
         return $nom_image;
     }
 ?>

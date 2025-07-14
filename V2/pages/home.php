@@ -16,6 +16,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th scope="col">Nom objet</th>
                     <th scope="col">Catégorie</th>
                     <th scope="col">Propriétaire</th>
@@ -25,6 +26,7 @@
             <tbody>
                 <?php for($i = 0; $i < count($liste_objet); $i++) { ?>
                     <tr>
+                        <td class="text-center"><img src="../assets/image/objets/<?= get_principal_image_object($liste_objet[$i]['id_objet']) ?>" alt="" width="50"></td>
                         <td><?= $liste_objet[$i]['nom_objet']; ?></td>
                         <td><?= $liste_objet[$i]['nom_categorie']; ?></td>
                         <td><?= get_nom_proprietaire_objet($liste_objet[$i]['id_membre']); ?></td>
