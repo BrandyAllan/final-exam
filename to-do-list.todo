@@ -12,6 +12,9 @@
     ✔ 10 emprunts @done (14/07/2025 09:52:13)
 
 ☐ Pages
-    ☐ login et inscription
+    ✔ login et inscription @done (14/07/2025 10:33:39)
+        ✔ traitement-login @done (14/07/2025 10:33:34)
+        ✔ traitement-inscription @done (14/07/2025 10:33:37)
+    ✔ home @done (14/07/2025 10:40:35)
     ☐ liste des objets (avec date de retour si emprunt en cours)
     ☐ filtre par catego

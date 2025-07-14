@@ -1,7 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
+    include("../inc/fonction.php");
+    session_start();
+    if (isset($_SESSION['email'])) {
+        $info = get_loged_membre($_SESSION['email']);
+    }
     if(isset($_GET['page'])) {
         $title = $_GET['page'];
         $include = "../pages/$title.php";
@@ -33,7 +37,7 @@ ini_set('display_errors', 1);
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="?page=index">Accueil</a>
+                                <a class="nav-link" href="?page=home">Accueil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="?page=filtre">Filtre</a>

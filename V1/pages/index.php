@@ -16,7 +16,7 @@
         </header>
         <main>
             <div class="log">
-                <form action="../traitement/traitement_login.php" method="post">
+                <form action="../traitement/traitement-login.php" method="post">
                     <?php if(isset($_GET['error'])) { ?>
                         <p class="error">Email ou mot de passe incorect</p>
                     <?php } ?>
