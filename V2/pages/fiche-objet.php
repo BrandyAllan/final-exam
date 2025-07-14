@@ -1,7 +1,7 @@
 <?php
 $info_objet = get_object_per_id($_GET['id_objet']);
 $history_emprunt = get_objet_emprunt_history($_GET['id_objet']);
-$images;
+$images = get_all_image_object($_GET['id_objet']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,17 +14,13 @@ $images;
         <div id="mainCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
             <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 1">
+                <img src="../assets/image/objets<?= $images[0] ?>.jpeg" class="d-block w-100" alt="Room 1">
             </div>
-            <?php for ($i=0; $i < count; $i++) { ?>
-                
+            <?php for ($i = 1; $i < count($images); $i++) { ?>
+                <div class="carousel-item">
+                    <img src="../assets/image/objets<?= $images[$i] ?>.jpeg" class="d-block w-100" alt="Room 2">
+                </div>  
             <?php } ?>
-            <div class="carousel-item">
-                <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 2">
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" class="d-block w-100" alt="Room 3">
-            </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
@@ -35,10 +31,11 @@ $images;
         </div>
 
         <div class="d-flex gallery-thumbs">
-            <img src="../assets/image/<?= $images['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="me-2">
-            <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="1">
-            <img src="../assets/image/objets<?= $images['type_maison'] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="2">
+            <?php for ($i = 0; $i < count($images); $i++) { ?>
+                <img src="../assets/image/objets<?= $images[$i] ?>.jpeg" data-bs-target="#mainCarousel" data-bs-slide-to="<?= $i ?>" class="me-2">               
+            <?php } ?>
         </div>
+        <p><?= $info_objet[0]['nom_objet'] ?> de <?= $info_objet[0]['nom'] ?></p>
         <article>
             <h3>Histprique d'emprunt</h3>
             <table class="table">

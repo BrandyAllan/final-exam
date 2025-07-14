@@ -81,15 +81,16 @@
     }
 
     function get_object_per_id($id){
-        $sql = "SELECT * FROM v_s2_objet
-                WHERE id_objet = $id";
+        $sql = "SELECT * 
+        FROM s2_objet o
+        JOIN s2_membre m ON m.id_membre = o.id_membre
+        WHERE id_objet = $id";
         $result = mysqli_query(dbconnect(), $sql);
         $ret = array();
 
         while($data = mysqli_fetch_assoc($result)) { 
             $ret[] = $data;
         }
-
         return $ret;
     }
 
