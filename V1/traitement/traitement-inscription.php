@@ -51,14 +51,14 @@ ini_set('display_errors', 1);
     }
     
     if(verify_inscription($email) > 0){
-        header('Location: ../pages/index.php?error=0');
+        header('Location: ../pages/inscription.php?error=0');
         exit;
     }
     if(verify_password($_POST['mdp'] ,$_POST['mdpbis']) == true){
         $mdp = $_POST['mdp'];
     }
     else{
-        header('Location: ../modele/modele1.php?page=inscription&errormdp=0');
+        header('Location: ../pages/inscription.php?errormdp=0');
         exit;
     }
     $_SESSION['email'] = $email;
