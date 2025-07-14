@@ -218,7 +218,6 @@
             $nom_image[] = "default.jpg";
             return $nom_image;
         }
-        $data = mysqli_fetch_assoc($result);
         if($data['nom_image'] == NULL) {
             $nom_image[] = "default.jpg";
             return $nom_image;
