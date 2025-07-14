@@ -133,4 +133,17 @@
 
         return $ret;
     }
+
+    function get_objet_proprietaire($id_membre) {
+        $sql = "SELECT * FROM v_s2_objet 
+                WHERE id_membre = $id_membre";
+        $result = mysqli_query(dbconnect(), $sql);
+        $ret = array();
+
+        while($data = mysqli_fetch_assoc($result)) { 
+            $ret[] = $data;
+        }
+
+        return $ret;
+    }
 ?>
